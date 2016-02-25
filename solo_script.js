@@ -1,13 +1,29 @@
 // ! ! !
 // Three Bugs
 
-var arrayAtticus = ["Atticus", "2405", "47000", 3];
-var arrayJem = ["Jem", "62347", "63500", 4];
-var arrayBoo = ["Boo", "11435", "54000", 3];
-var arrayScout = ["Scout", "6243", "74750", 5];
+//var arrayAtticus = ["Atticus", "2405", "47000", 3];
+//var arrayJem = ["Jem", "62347", "63500", 4];
+// var arrayBoo = ["Boo", "11435", "54000", 3];
+// var arrayScout = ["Scout", "6243", "74750", 5];
 
-var array = [arrayAtticus, arrayJem, arrayBoo, arrayScout];
 
+
+
+function Person(objName, objNumber, objSalary, objReview){
+  this.objName = objName;
+  this.objNumber = objNumber;
+  this.objSalary = objSalary;
+  this.objReview = objReview;
+}
+
+var objAtticus = new Person("Atticus", "2405", "47000", 3);
+var objJem = new Person("Jem", "62347", "63500", 4);
+var objBoo = new Person("Boo", "11435", "54000", 3);
+var objScout = new Person("Scout", "6243", "74750", 5);
+
+var array = [objAtticus, objJem, objBoo, objScout];
+
+console.log(array);
 
 //Create variables used to write to the DOM
 var newEl, newText, position;
@@ -19,9 +35,7 @@ position = document.getElementById('content');
 //Loop the array, extracting each array and writing information to the DOM
 //Note that the information is not 'clean'
 for(var i = 0; i < array.length; i++){
-  //I found the first bug!!! YAAAYYY!
   array[i] = calculateSTI(array[i]);
-  //I almost cried. 
  	newEl = document.createElement('li');
 	newText = document.createTextNode(array[i]);
 	newEl.appendChild(newText);
@@ -30,14 +44,15 @@ for(var i = 0; i < array.length; i++){
 
 
 
-function calculateSTI(array){
+function calculateSTI(person){
   var newArray = [];
+  newArray[0] = person.objName;
 
-  newArray[0] = array[0];
+  var employeeNumber = person.objNumber;
+  var baseSalary = person.objSalary;
+  var reviewScore = person.objReview;
 
-  var employeeNumber = array[1];
-  var baseSalary = array[2];
-  var reviewScore = array[3];
+
 
   var bonus = getBaseSTI(reviewScore) + getYearAdjustment(employeeNumber) - getIncomeAdjustment(baseSalary);
   if(bonus > 0.13){
@@ -51,7 +66,6 @@ function calculateSTI(array){
   console.log(newArray[0] + " " + newArray[1] + " " + newArray[2] + " " + newArray[3]);
   return newArray;
 }
-
 
 function getBaseSTI(reviewScore){
   var basePercent;
