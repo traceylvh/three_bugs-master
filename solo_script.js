@@ -7,7 +7,71 @@
 // var arrayScout = ["Scout", "6243", "74750", 5];
 
 
+//this is after I built object manually. Using Scott's code...
 
+var pfArray = [];
+
+var pfAtticus = new PersonFinal("Atticus", "47000", "4230", "51230");
+var pfJem = new PersonFinal("Jem", "63500", "3810", "67310");
+var pfBoo = new PersonFinal("Boo", "54000", "2160", "56160");
+var pfScout = new PersonFinal("Scout", "74750", "9718", "84467");
+
+//var pfArray = [pfAtticus, pfJem, pfBoo, pfScout];
+
+//console.log(pfArray);
+//ok, well, that worked. I have something to work with...
+
+$(document).ready(function(){
+
+  //$('.container').append('<h1>2016 Employee Bonus Awards</h1>');
+  titleMessage();
+
+  for(var i = 0; i < pfArray.length; i++){
+    appendDom(pfArray[i]);
+  }
+});
+
+/*function Person(name, position, salary, rating){
+  this.name = name;
+  this.position = position;
+  this.salary = salary;
+  this.rating = rating;
+  peopleArray.push(this);
+}*/
+
+//so lost :(  gonna just build object manually
+function PersonFinal(pfName, pfSalary, pfBonus, pfTotalComp){
+  this.pfName = pfName;
+  this.pfSalary = pfSalary;
+  this.pfBonus = pfBonus;
+  this.pfTotalComp = pfTotalComp;
+  pfArray.push(this);
+}
+
+
+
+function appendDom(object){
+
+  $('.container').append('<ul class="person"></ul>');
+
+  var $el = $('.container').children().last();
+
+  $el.append('<li>Employee: ' + object.pfName + '</li>');
+  $el.append('<li>Salary: $' + object.pfSalary + '</li>');
+  $el.append('<li>Bonus: $' + object.pfBonus + '</li>');
+  $el.append('<li>Total Compensation: $' + object.pfTotalComp + '</li>');
+}
+
+function titleMessage() {
+  $('.container').append('<h1>2016 Employee Bonus Awards</h1>');
+}
+
+
+
+
+
+
+//old cold, good code
 
 function Person(objName, objNumber, objSalary, objReview){
   this.objName = objName;
@@ -26,20 +90,20 @@ var array = [objAtticus, objJem, objBoo, objScout];
 console.log(array);
 
 //Create variables used to write to the DOM
-var newEl, newText, position;
+//var newEl, newText, position;
 
 
 //Capture the position of insertion into the DOM
-position = document.getElementById('content');
+//position = document.getElementById('content');
 
 //Loop the array, extracting each array and writing information to the DOM
 //Note that the information is not 'clean'
 for(var i = 0; i < array.length; i++){
   array[i] = calculateSTI(array[i]);
- 	newEl = document.createElement('li');
-	newText = document.createTextNode(array[i]);
+ 	//newEl = document.createElement('li');
+	/*newText = document.createTextNode(array[i]);
 	newEl.appendChild(newText);
-	position.appendChild(newEl);
+	position.appendChild(newEl);*/
 }
 
 
